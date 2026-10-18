@@ -1,0 +1,8 @@
+# The analysis run records the SHA-256 checksum of pdxe_utils.py and of each
+# plan in prespecification/ in outputs/manifest.json, and the figures notebook
+# refuses to run if pdxe_utils.py no longer matches. Marking these files -text
+# stops git from converting their line endings on commit or checkout (for
+# example on Windows with core.autocrlf), so the copies in this repository
+# keep exactly the bytes that were checksummed.
+pdxe_utils.py            -text
+prespecification/*.json  -text
