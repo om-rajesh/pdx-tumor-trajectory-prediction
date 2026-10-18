@@ -1,0 +1,26 @@
+# Data
+data/
+
+# Restricted patient-level files
+**/clinical_patients*
+**/clinical_panel_restricted*
+*.sas7bdat
+*.xpt
+
+# Regenerated outputs
+outputs/interim/
+outputs/frozen/
+outputs/figures/
+
+# Python and Jupyter
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+
+# Editors and operating systems
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini
+~$*

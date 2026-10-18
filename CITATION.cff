@@ -1,0 +1,7 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite it as below."
+type: software
+title: "Depth and durability of response in patient-derived xenografts: analysis code"
+authors:
+  - name: "Anonymous"
+license: MIT

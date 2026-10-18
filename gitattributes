@@ -1,0 +1,3 @@
+# Checksummed files: keep line endings unchanged
+pdxe_utils.py            -text
+prespecification/*.json  -text

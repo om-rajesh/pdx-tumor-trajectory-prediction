@@ -1,0 +1,12 @@
+numpy==2.4.6
+pandas==2.2.3
+scipy==1.17.1
+scikit-learn==1.9.0
+statsmodels==0.14.6
+jax==0.10.2
+jaxlib==0.10.2
+numpyro==0.21.0
+openpyxl==3.1.5
+pyarrow>=16
+matplotlib==3.10.9
+ipykernel
