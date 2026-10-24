@@ -1,0 +1,60 @@
+{
+  "axis_orientation": "both axes flipped so HIGHER IS BETTER: depth_score = -response (more negative response = deeper regression); durability_score = -post_nadir_growth_rate (smaller growth = slower regrowth)",
+  "compound_map": {
+    "binimetinib-3.5mpk": "binimetinib",
+    "gemcitabine-50mpk": "gemcitabine"
+  },
+  "cytostatic_families": [
+    "MAPK",
+    "PI3K-mTOR",
+    "cell cycle"
+  ],
+  "cytotoxic_families": [
+    "cytotoxic",
+    "apoptotic"
+  ],
+  "design": "within-tumour paired differences between agents of different families in the same tumour model; bootstrap clustered on tumour model; permutation null shuffling family labels across agents",
+  "excluded": "untreated arms; combination arms; agents with no family label",
+  "exploratory": "all families outside the primary contrast; agent-level residuals; any comparison against the untreated regrowth floor",
+  "family_map": {
+    "5FU": "cytotoxic",
+    "BGJ398": "RTK",
+    "BKM120": "PI3K-mTOR",
+    "BYL719": "PI3K-mTOR",
+    "CGM097": "cell cycle",
+    "CKX620": "MAPK",
+    "CLR457": "PI3K-mTOR",
+    "HDM201": "cell cycle",
+    "HSP990": "other",
+    "INC280": "RTK",
+    "INC424": "other",
+    "LDE225": "developmental",
+    "LDK378": "RTK",
+    "LEE011": "cell cycle",
+    "LFA102": "hormonal",
+    "LGH447": "other",
+    "LGW813": "apoptotic",
+    "LJC049": "developmental",
+    "LJM716": "RTK",
+    "LKA136": "RTK",
+    "LLM871": "RTK",
+    "TAS266": "apoptotic",
+    "WNT974": "developmental",
+    "abraxane": "cytotoxic",
+    "binimetinib": "MAPK",
+    "binimetinib-3.5mpk": "MAPK",
+    "cetuximab": "RTK",
+    "dacarbazine": "cytotoxic",
+    "encorafenib": "MAPK",
+    "erlotinib": "RTK",
+    "everolimus": "PI3K-mTOR",
+    "figitumumab": "RTK",
+    "gemcitabine-50mpk": "cytotoxic",
+    "paclitaxel": "cytotoxic",
+    "tamoxifen": "hormonal",
+    "trametinib": "MAPK",
+    "trastuzumab": "RTK"
+  },
+  "label_provenance": "families assigned from the published 'Treatment target' string shipped with the dataset, not from independent compound knowledge",
+  "primary_hypothesis": "Cytostatic families (MAPK, PI3K-mTOR, cell cycle) show SHALLOWER depth and SLOWER post-nadir regrowth than cytotoxic and apoptotic families, tested on within-tumour agent pairs."
+}

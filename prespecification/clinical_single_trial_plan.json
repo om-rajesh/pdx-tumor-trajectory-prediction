@@ -1,0 +1,44 @@
+{
+  "comparator_features": [
+    "depth_at_landmark"
+  ],
+  "comparator_model": "depth achieved by the landmark, alone",
+  "known_limitations_stated_in_advance": [
+    "the landmark requires surviving and being assessed twice before the clock starts, so patients who progressed between the first and second scheduled assessments are excluded entirely; the cohort is therefore enriched for slower progressors and its absolute event rate is not the trial's",
+    "single-arm comparator data, so no within-patient treatment comparison is possible and the PDX selection endpoint has no human analogue in this study",
+    "roughly a sixth of nadir-clock events are regression to the mean",
+    "over half of progressions are new lesions, which have no analogue in single-implant mouse data",
+    "baseline burden and number of lesions are prognostic and are NOT in the primary model, so a C-index gain could partly reflect shape features proxying for baseline burden; the fourth sensitivity tests this directly"
+  ],
+  "landmark_day": 112,
+  "landmark_justification": "the second scheduled tumour assessment. Chosen so that a patient on the protocol schedule has two assessments before the clock starts, which is the minimum for a rate of change. The first assessment cannot serve as a landmark because no patient has two prior scans by then.",
+  "leakage_rule": "every feature must be computable from assessments STRICTLY BEFORE the landmark day; the landmark assessment itself is excluded from feature construction because it is the clock start",
+  "max_parameters": 3,
+  "multiplicity": "Holm across primary plus the four sensitivities",
+  "primary_cohort": "landmark cohort",
+  "primary_event": "RECIST progression from the landmark, either source",
+  "primary_metric": "Harrell C-index for time to progression",
+  "question": "Among patients still under observation at the landmark, does the SHAPE of the pre-landmark tumour-burden trajectory predict time to RECIST progression better than depth of response alone?",
+  "retuning_after_seeing_results": "forbidden",
+  "runs_permitted": 1,
+  "secondary_cohort": "nadir clock",
+  "secondary_events": [
+    "SLD crossing only",
+    "new lesion only"
+  ],
+  "seed": 20260921,
+  "sensitivities": [
+    "nadir-excluded event definition (the 59.8% rate)",
+    "nadir clock instead of landmark",
+    "SLD-source events only, excluding new lesions",
+    "primary model plus log_baseline_sld as a prognostic adjustment"
+  ],
+  "success_rule": "trajectory C-index exceeds comparator C-index with a 95% paired bootstrap interval excluding zero",
+  "trajectory_features": [
+    "depth_at_landmark",
+    "slope_to_landmark",
+    "already_rising"
+  ],
+  "trajectory_model": "depth plus pre-landmark shape features",
+  "validation": "5-fold cross-validation, folds stratified on event status"
+}

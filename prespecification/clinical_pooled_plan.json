@@ -1,0 +1,69 @@
+{
+  "bootstrap": "paired over patients, stratified by study so a resample cannot consist mostly of one trial",
+  "comparator_features": [
+    "depth_at_landmark"
+  ],
+  "exploratory_not_in_the_family": [
+    "agreement between derived RECIST progression and CA031's investigator-assessed PROGDAY - a validation of the pipeline, not a test of the hypothesis",
+    "cytostatic (A6181087, erlotinib) versus cytotoxic (CA031, carboplatin/paclitaxel) - CONFOUNDED WITH STUDY, since line of therapy, era, population and scan schedule differ too; named here so that finding it later cannot be called a discovery"
+  ],
+  "known_limitations_stated_in_advance": [
+    "two studies is not a cross-validation; leave-one-study-out is a two-way swap and cannot separate study from anything correlated with study",
+    "the landmark requires surviving and being assessed twice, so both cohorts are enriched for slower progressors and their event rates are not their trials'",
+    "single-arm comparator data in both, so no within-patient treatment comparison exists and the PDX selection endpoint has no human analogue",
+    "scan schedules differ (8 weeks against 6), so the pre-landmark window spans different real time in the two studies even though the rule is identical",
+    "the single-study result was null on its primary; the pooled analysis is better powered but is not independent of it"
+  ],
+  "landmark_by_study": {
+    "A6181087": {
+      "assessment_interval_weeks": 8,
+      "landmark_day": 112
+    },
+    "CA031": {
+      "assessment_interval_weeks": 6,
+      "landmark_label": "WEEK12",
+      "nominal_day": 84
+    }
+  },
+  "landmark_rule": "the second scheduled tumour assessment, per protocol",
+  "max_parameters": 3,
+  "multiplicity": "Holm across the primary and the five secondary analyses",
+  "outcome_harmonisation": "CA031's investigator-assessed PROGDAY is NOT used in the pooled primary, because A6181087 has no equivalent and mixing them would make the studies non-comparable",
+  "primary_metric": "Harrell C-index for time to progression",
+  "primary_outcome": "RECIST progression derived from the SLD panel: sum >= 120% of the post-landmark reference AND >= 5 mm absolute, or a new lesion; computed by the same function in both studies",
+  "question": "Pooled across NSCLC comparator arms, does the SHAPE of the pre-landmark tumour-burden trajectory predict time to RECIST progression better than depth of response alone?",
+  "retuning_after_seeing_results": "forbidden",
+  "runs_permitted": 1,
+  "secondary_analyses": [
+    "leave-one-study-out: fit on one study, evaluate on the other",
+    "per-study C-index, reported separately and not pooled",
+    "SLD-source events only, new lesions censored",
+    "primary model plus log baseline SLD as a prognostic adjustment",
+    "nadir clock instead of landmark"
+  ],
+  "seed": 20260922,
+  "sld_source": {
+    "A6181087": "sum of per-lesion TMMDIA over baseline target lesions",
+    "CA031": "SUMDIAM, which the CRF already sums per assessment; one row per patient per CPEVENT, since the ten-slot form repeats the same sum on every lesion row"
+  },
+  "studies_excluded": {
+    "EFC10261": "SDTM release contains no TR or TU domain, so no per-lesion measurements exist; excluded on data structure, before any outcome was computed"
+  },
+  "studies_included": [
+    "A6181087",
+    "CA031"
+  ],
+  "success_rule": "pooled trajectory C-index exceeds pooled comparator C-index with a 95% paired bootstrap interval, clustered on study, excluding zero",
+  "supersedes": "971249c51d66f110aae66b01435d13413bc1e86dac2ca5dcf5bb316cbc396848",
+  "time_axis": {
+    "A6181087": "EFDAY - RANDDAY",
+    "CA031": "SCANDAY - RANDDAY where present (about 35% of rows), else the nominal week parsed from CPEVENT x 7; the two agree to within two days at every scheduled visit"
+  },
+  "trajectory_features": [
+    "depth_at_landmark",
+    "slope_to_landmark",
+    "already_rising"
+  ],
+  "unit_harmonisation": "CA031 records diameters in CENTIMETRES (SUMDIAM range 0-70); A6181087 in MILLIMETRES. CA031 is converted to mm on load, so the 5 mm absolute threshold and the 5 mm too-small floor mean the same thing in both",
+  "validation": "5-fold cross-validation stratified on event status and study, so each fold carries both studies in similar proportion"
+}
